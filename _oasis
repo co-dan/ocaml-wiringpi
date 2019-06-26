@@ -18,3 +18,9 @@ Executable "wpi-button-example"
   BuildTools:   ocamlbuild
   MainIs:       button.ml
   BuildDepends: WiringPi,unix
+
+Executable "adafruit-lcd-example"
+  Path:         examples/
+  BuildTools:   ocamlbuild
+  MainIs:       lcd.ml
+  BuildDepends: WiringPi,unix
