@@ -12,16 +12,6 @@ type mono_lcd = {
     d6: pin;
     d7: pin
 }
-let lcd = {
-    columns = 16;
-    rows = 2;
-    rs = GPIO20;
-    en = GPIO16;
-    d4 = GPIO19;
-    d5 = GPIO5;
-    d6 = GPIO11;
-    d7 = GPIO10;
-}
 
 (** MAGIC NUMBERS *)
 (* Commands *)
@@ -131,9 +121,3 @@ let set_position lcd x y =
 
 let write_bytes lcd bts =
   Bytes.iter (fun c -> write8 lcd c ~char_mode:true) bts
-
-let _ =
-  setup lcd;
-  clear lcd;
-  set_position lcd 0 0;
-  write_bytes lcd (Bytes.of_string "Hello, world.")

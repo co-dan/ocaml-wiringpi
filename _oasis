@@ -22,5 +22,5 @@ Executable "wpi-button-example"
 Executable "adafruit-lcd-example"
   Path:         examples/
   BuildTools:   ocamlbuild
-  MainIs:       lcd.ml
+  MainIs:       lcd_example.ml
   BuildDepends: WiringPi,unix
