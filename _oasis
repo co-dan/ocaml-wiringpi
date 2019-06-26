@@ -24,3 +24,12 @@ Executable "adafruit-lcd-example"
   BuildTools:   ocamlbuild
   MainIs:       lcd_example.ml
   BuildDepends: WiringPi,unix
+
+Executable "adafruit-lcd-server"
+  CompiledObject: native
+  Path:         examples/
+  BuildTools:   ocamlbuild
+  MainIs:       lcd_lwt.ml
+  BuildDepends: WiringPi,unix,lwt,lwt.unix,threads
+  CCLib:      -lwiringPi
+
