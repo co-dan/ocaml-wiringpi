@@ -1,4 +1,5 @@
 (** An example with Adafruit character LCD, HD44780. *)
+(* The documentation: https://cdn-shop.adafruit.com/datasheets/HD44780.pdf *)
 open Gpio3
 
 (** Parameters *)
@@ -91,12 +92,13 @@ let setup lcd =
   pin_mode lcd.d5 OUT;
   pin_mode lcd.d6 OUT;
   pin_mode lcd.d7 OUT;
-  (* MAGIC *)
+  (* send the 4-bit initialization sequence: 0011, 0011, 0011, 0010.
+     see Figure 24 in the docs. *)
   write8_unsafe lcd 0x33;
   write8_unsafe lcd 0x32;
   (* set up some stuff *)
   let displayctrl = _lcd_displayon lor _lcd_cursoroff lor _lcd_blinkoff in
-  let displayfn = _lcd_4bitmode lor _lcd_1line lor _lcd_2line lor _lcd_5x8dots in
+  let displayfn = _lcd_4bitmode lor _lcd_2line lor _lcd_5x8dots in
   let displaymode = _lcd_entryleft lor _lcd_entryshiftdecrement in
   write8_unsafe lcd (displayctrl lor _lcd_displaycontrol);
   write8_unsafe lcd (displayfn lor _lcd_functionset);
